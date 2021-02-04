@@ -51,8 +51,9 @@ a:hover{
 #notification{
     img{
        width: 25px;
-       height 30px:
+       height: 30px;
     }
+
 span{
     background: #FFF;
     color: #EE6B26;
@@ -74,7 +75,7 @@ span{
 .divider::after{
 content:"|";
 margin: 10px;
-color: #FFF
+color: #FFF;
 
 }
 
