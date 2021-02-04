@@ -18,6 +18,7 @@ img{
     height: 25px;
 }
 span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #fff;
     font-weight: bold;
     align-self: flex-end;
