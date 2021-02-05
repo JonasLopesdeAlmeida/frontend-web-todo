@@ -11,6 +11,8 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 
+
+
 cursor:pointer;
 transition: all 0.3s ease;
 margin: 15px ;
