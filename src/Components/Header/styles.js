@@ -33,7 +33,7 @@ display: flex;
 align-items: center;
 justify-content: flex-end;
 
-a{
+a, button{
   
     color: #FFF;
     font-weight: bold;
@@ -43,6 +43,13 @@ a{
     
 
 }
+
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 
 
 a:hover{

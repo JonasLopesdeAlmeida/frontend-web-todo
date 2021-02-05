@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png'
 import bell from '../../assets/bell.png'
 import * as S from './styles'
 
-function Header() {
+function Header({lateCount, clickNotification}) {
   return (
     <S.Container>
       <S.LeftSide>
@@ -17,11 +17,11 @@ function Header() {
       <span className="divider"></span>
       <a href="#">SYNCHRONIZE MOBILE</a>
       <span className="divider"></span>
-      <a href="#" id="notification">
+      <button onClick={clickNotification} id="notification">
       <img src={bell} alt="Notification"/>
-      <span>5</span>
+      <span>{lateCount}</span>
 
-      </a>
+      </button>
       </S.RightSide>
     </S.Container>
   )
