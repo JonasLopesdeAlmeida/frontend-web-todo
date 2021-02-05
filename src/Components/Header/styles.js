@@ -4,7 +4,7 @@ export const Container = styled.div`
 width: 100%;
 height: 70px;
 background: linear-gradient(150deg, #20295F, #3949db 100%);
-border-bottom: 5px solid #EE6B26;
+border-bottom: 4px solid #EE6B26;
 
 display: flex;
 
@@ -34,11 +34,13 @@ align-items: center;
 justify-content: flex-end;
 
 a{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
     color: #FFF;
     font-weight: bold;
     text-decoration: none;
-    margin: 0 10px
+    margin: 0 10px;
+    font-size: 13px;
+    
 
 }
 

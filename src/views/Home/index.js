@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Header from '../../Components/Header'
 import FilterCard from '../../Components/FilterCard'
+import TaskCard from '../../Components/TaskCard'
 import Footer from '../../Components/Footer'
 import * as S from './styles'
 
@@ -8,9 +9,11 @@ function Home() {
   const [filterActived, setFilterActived] = useState('all');
 
   return (
-  <S.Container>
    
+  <S.Container>
+   <S.GlobalStyle/>
    <Header/>
+
    <S.FilterArea>
    <button type="button" onClick={() => setFilterActived("all")}>
    <FilterCard title="All" actived={filterActived == 'all'} />
@@ -33,8 +36,27 @@ function Home() {
    </button>
 
    </S.FilterArea>
-   <Footer/>
 
+   <S.Title>
+     <h3>Tasks</h3>
+   </S.Title>
+    
+    <S.Content>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    <TaskCard/>
+    
+    </S.Content>
+
+   <Footer/>
+ 
   </S.Container>
   
   
