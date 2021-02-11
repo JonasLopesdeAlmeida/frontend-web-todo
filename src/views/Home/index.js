@@ -3,6 +3,7 @@ import Header from '../../Components/Header';
 import FilterCard from '../../Components/FilterCard';
 import TaskCard from '../../Components/TaskCard';
 import Footer from '../../Components/Footer';
+import {Link} from 'react-router-dom';
 import * as S from './styles';
 
 import api from '../../services/api';
@@ -74,7 +75,11 @@ function Notification(){
     <S.Content>
    {
      tasks.map(t => (
-     <TaskCard type={t.type} title={t.title} when={t.when}/>
+
+      <Link to={`/task/${t._id}`}>
+       <TaskCard type={t.type} title={t.title} when={t.when}/>
+      </Link>
+    
      ))
     
    }

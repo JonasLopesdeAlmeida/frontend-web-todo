@@ -2,15 +2,17 @@ import React, {useState, useEffect, useRef} from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import * as S from './styles';
-
+import {format} from 'date-fns';
 import api from '../../services/api';
 import TypeIcons from '../../utils/typeicons';
+import {Redirect} from 'react-router-dom';
 
 import iconCalendar from '../../assets/calendar.png';
 import iconClock from '../../assets/clock.png';
 
-function Task() {
+function Task({match}) {
  
+    const [redirect, setRedirect] = useState(false);
     const [lateCount, setLateCount] = useState();
     const [type, setType] = useState();
     const [id, setId] = useState();
@@ -33,7 +35,37 @@ function Task() {
   
 }
 
+async function LoadTaskDetails(){
+    await api.get(`/task/${match.params.id}`)
+    .then(response => {
+    setType(response.data.type)
+    setTitle(response.data.title)
+    setDescription(response.data.description)
+    setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
+    setHour(format(new Date(response.data.when), 'HH:mm'))
+    })
+
+}
+
 async function Save(){
+
+if(match.params.id){
+    await api.put(`/task/${match.params.id}`, {
+
+        macaddress,
+        done,
+        type,
+        title,
+        description,
+        when: `${date}T${hour}:00.000`
+    
+    }).then(()=>
+        setRedirect(true)
+        //alert('Task has been saved successfully')
+    )
+   
+}else{
+
 await api.post('/task', {
 
     macaddress,
@@ -43,12 +75,10 @@ await api.post('/task', {
     when: `${date}T${hour}:00.000`
 
 }).then(()=>
-    alert('Task has been saved successfully')
-)
-.catch(()=>
-    alert('something went wrong')
+setRedirect(true)
 )
 
+}
 }
 
 
@@ -62,12 +92,15 @@ const myForm = useRef(null)
 
  useEffect(()=>{
    lateVerify();
+   LoadTaskDetails();
  }, [])
 
   return (
    
   <S.Container>
    <S.GlobalStyle/>
+
+   {redirect && <Redirect to="/"/>}
    <Header lateCount={lateCount}  />
 
    <S.Form ref={myForm} onSubmit={submit}>
