@@ -93,14 +93,14 @@ setRedirect(true)
 }
 }
 
+async function Remove(){
+const res = window.confirm('Are you sure you want to remove this task?')
+if(res === true){
+    await api.delete(`/task/${match.params.id}`)
+    .then(() => setRedirect(true))
+}
+}
 
-const myForm = useRef(null)
-
- const submit = () => {
-
-   myForm.current.reset(); // will reset the entire form :)
-
-   }
 
  useEffect(()=>{
    lateVerify();
@@ -115,7 +115,7 @@ const myForm = useRef(null)
    {redirect && <Redirect to="/"/>}
    <Header lateCount={lateCount}  />
 
-   <S.Form ref={myForm} onSubmit={submit}>
+   <S.Form >
        <S.TypeIcons>
       {
           TypeIcons.map((icon, index) => (
@@ -178,7 +178,7 @@ const myForm = useRef(null)
               onChange={() => setDone(!done)}/>
               <span>COMPLETED</span>
           </div>
-          <button type="button">DELETE</button>
+         {match.params.id && <button type="button" onClick={Remove}>DELETE</button>}
 
       </S.Options>
 
