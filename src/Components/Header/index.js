@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 function Header({lateCount, clickNotification}) {
   return (
-    <S.Container>
+    <S.Container >
       <S.LeftSide>
       <img src={logo} alt="Logo"/>
       </S.LeftSide>

@@ -5,8 +5,9 @@ width: 100%;
 height: 70px;
 background: linear-gradient(150deg, #20295F, #3949db 100%);
 border-bottom: 4px solid #EE6B26;
-
 display: flex;
+
+
 
 `
 

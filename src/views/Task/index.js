@@ -40,6 +40,7 @@ async function LoadTaskDetails(){
     .then(response => {
     setType(response.data.type)
     setTitle(response.data.title)
+    setDone(response.data.done)
     setDescription(response.data.description)
     setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
     setHour(format(new Date(response.data.when), 'HH:mm'))
@@ -48,6 +49,17 @@ async function LoadTaskDetails(){
 }
 
 async function Save(){
+    if(!title)
+    return alert("Please, type a title for the task!")
+    else if(!description)
+    return alert("Please, type a description for the task!")
+    else if(!type)
+    return alert("Please, select a type for the task!")
+    else if(!date)
+    return alert("Please, select a date for the task!")
+    else if(!hour)
+    return alert("Please, selct a hour for the task!")
+
 
 if(match.params.id){
     await api.put(`/task/${match.params.id}`, {

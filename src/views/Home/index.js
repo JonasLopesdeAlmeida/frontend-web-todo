@@ -12,6 +12,7 @@ function Home() {
   const [filterActived, setFilterActived] = useState('all');
   const [tasks, setTasks] = useState([]);
   const [lateCount, setLateCount] = useState();
+  const [done, setDone] = useState(false);
 
 
  async function loadTasks(){
@@ -23,8 +24,10 @@ function Home() {
 
  async function lateVerify(){
   await api.get(`/task/filter/late/11-11-11-11-11-12`)
+  
   .then(response => {
      setLateCount(response.data.length)
+  
   })
 }
 
@@ -77,7 +80,7 @@ function Notification(){
      tasks.map(t => (
 
       <Link to={`/task/${t._id}`}>
-       <TaskCard type={t.type} title={t.title} when={t.when}/>
+       <TaskCard type={t.type} title={t.title} when={t.when} done={t.done}/>
       </Link>
     
      ))
