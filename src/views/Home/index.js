@@ -11,8 +11,7 @@ import api from '../../services/api';
 function Home() {
   const [filterActived, setFilterActived] = useState('all');
   const [tasks, setTasks] = useState([]);
-  const [lateCount, setLateCount] = useState();
-  const [done, setDone] = useState(false);
+  // const [done, setDone] = useState(false);
 
 
  async function loadTasks(){
@@ -22,31 +21,22 @@ function Home() {
    })
  }
 
- async function lateVerify(){
-  await api.get(`/task/filter/late/11-11-11-11-11-12`)
-  
-  .then(response => {
-     setLateCount(response.data.length)
-  
-  })
-}
 
 function Notification(){
   setFilterActived('late');
 }
 
 
- 
  useEffect(()=>{
    loadTasks();
-   lateVerify();
+
  }, [filterActived])
 
   return (
    
   <S.Container>
    <S.GlobalStyle/>
-   <Header lateCount={lateCount} clickNotification={Notification} />
+   <Header clickNotification={Notification} />
 
    <S.FilterArea>
    <button type="button" onClick={() => setFilterActived("all")}>
