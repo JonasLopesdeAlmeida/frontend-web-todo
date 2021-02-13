@@ -10,6 +10,8 @@ import {Redirect} from 'react-router-dom';
 import iconCalendar from '../../assets/calendar.png';
 import iconClock from '../../assets/clock.png';
 
+import isConnected from '../../utils/isConnected';
+
 function Task({match}) {
  
     const [redirect, setRedirect] = useState(false);
@@ -20,7 +22,7 @@ function Task({match}) {
     const [description, setDescription] = useState();
     const [date, setDate] = useState();
     const [hour, setHour] = useState();
-    const [macaddress, setMacaddress] = useState('11-11-11-11-11-12');
+    const [macaddress, setMacaddress] = useState();
 
 
 async function LoadTaskDetails(){
@@ -52,7 +54,7 @@ async function Save(){
 if(match.params.id){
     await api.put(`/task/${match.params.id}`, {
 
-        macaddress,
+        macaddress: isConnected,
         done,
         type,
         title,
@@ -68,14 +70,16 @@ if(match.params.id){
 
 await api.post('/task', {
 
-    macaddress,
+    macaddress: isConnected,
     type,
     title,
     description,
     when: `${date}T${hour}:00.000`
 
 }).then(()=>
+// window.location.reload()
 setRedirect(true)
+
 )
 
 }
@@ -91,8 +95,10 @@ if(res === true){
 
 
  useEffect(()=>{
-LoadTaskDetails();
- }, [LoadTaskDetails])
+  if(!isConnected)
+  setRedirect(true)
+  LoadTaskDetails();
+ }, [])
 
   return (
    

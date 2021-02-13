@@ -90,6 +90,14 @@ color: #FFF;
 
 }
 
+button{
+    font-size: 13px;
+}
 
+button:hover{
+     
+     color: #EE6B26;
+ 
+ }
 
 `
