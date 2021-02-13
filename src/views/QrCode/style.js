@@ -43,8 +43,45 @@ p{
 export const QrCodeArea = styled.div`
 
 width: 100%;
-height: 400px;
-background: #290502
+display: flex;
+justify-content: center;
 
 
 `
+export const ValidationCode = styled.div`
+display: flex;
+flex-direction: column;
+margin: 10px;
+
+span{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 10px;
+}
+input{
+  font-size: 18px;
+  padding: 10px; 
+  text-align: center; 
+  border:  1px solid #EE6B26;
+  border-radius: 5px;
+}
+
+button{
+font-weight: bold;
+font-size: 18px;
+color: #fff;
+background: linear-gradient(150deg, #ee6b26, #3949db 100%);
+border: none;
+border-radius: 30px;
+padding: 10px;
+margin-top: 10px;
+cursor: pointer;
+
+ &:hover{
+    opacity: 0.7;
+ }
+}
+
+`
+
+
