@@ -15,8 +15,12 @@ const hour = useMemo(() => format(new Date(when), 'HH:mm') );
    <S.TopCard>
    <img src={typeIcons[type]} alt="Task icon"/>
    <h3>{title}</h3>
-   <p>{done === true ? 'Done!' : null}</p>
    </S.TopCard>
+
+   <S.MiddleCard>
+   <span>{done === true ? 'Done!' : null}</span>
+   </S.MiddleCard>
+
    <S.BottomCard>
        <strong>{date}</strong>
        <span>{hour}</span>

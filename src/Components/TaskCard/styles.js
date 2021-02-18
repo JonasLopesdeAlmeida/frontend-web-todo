@@ -7,16 +7,12 @@ box-shadow: -3px 1px 13px -2px rgba(0,0,0,0.73);
 border-radius: 10px;
 
 display: flex;
-align-items: center;
 justify-content: center;
 flex-direction: column;
-
-
 
 cursor:pointer;
 transition: all 0.3s ease;
 margin: 15px ;
-
 opacity:${props => props.done ? 0.5: 1 } ;
 
 &:hover{
@@ -37,7 +33,6 @@ justify-content: center;
 flex-direction: column;
 
 p{
-    
     color: green;
     font-weight: bold;
     margin-top:0px;
@@ -47,7 +42,20 @@ p{
 
 `
 
+export const MiddleCard = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
 
+span{
+    color: green;
+    font-weight: bold;
+    margin-top:-15px;
+    margin-bottom:1px;
+}
+
+
+`
 
 export const BottomCard = styled.div`
 width: 100%;

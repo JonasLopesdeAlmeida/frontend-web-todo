@@ -7,21 +7,17 @@ import {Link, Redirect} from 'react-router-dom';
 import * as S from './styles';
 import isConnected from '../../utils/isConnected';
 
-import api from '../../services/api';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { load } from '../../store/homeReducer';
 
-function Home() {
+
+
+
+function Home(props) {
+  
   const [filterActived, setFilterActived] = useState('all');
-  const [tasks, setTasks] = useState([]);
   const [redirect, setRedirect] = useState(false);
-
-
- async function loadTasks(){
-   await api.get(`/task/filter/${filterActived}/${isConnected}`)
-   .then(response => {
-      setTasks(response.data)
-   })
- }
-
 
 function Notification(){
   setFilterActived('late');
@@ -29,10 +25,11 @@ function Notification(){
 
 
  useEffect(()=>{
-   loadTasks();
+   //state change being passed into action reducer as a dynamic parameter
+   props.load(filterActived);
    if(!isConnected)
    setRedirect(true);
- }, [filterActived, loadTasks])
+ }, [filterActived, props.load])
 
   return (
    
@@ -71,7 +68,7 @@ function Notification(){
     
     <S.Content>
    {
-     tasks.map(t => (
+     props.tasks.map(t => (
 
       <Link to={`/task/${t._id}`}>
        <TaskCard type={t.type} title={t.title} when={t.when} done={t.done}/>
@@ -92,4 +89,13 @@ function Notification(){
   )
 }
 
-export default Home;
+const mapStateToProps= state => ({
+
+  tasks: state.tasks.tasks
+
+})
+
+const mapDispatchToProps = dispatch =>
+bindActionCreators({load}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
